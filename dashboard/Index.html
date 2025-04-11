@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce - Customer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>GALAXYCITY</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#products">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#orders">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>My Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#ratings">
+                        <i class="fas fa-star"></i>
+                        <span>Ratings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-info">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user">
+                        <img src="https://via.placeholder.com/40" alt="User">
+                        <span>ESPERANZA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="content">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-icon" style="background-color: #ffecb3;">
+                            <i class="fas fa-shopping-cart" style="color: #ffa000;"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Total Orders</h3>
+                            <h2 id="total-orders">0</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="background-color: #c8e6c9;">
+                            <i class="fas fa-check-circle" style="color: #4caf50;"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Completed</h3>
+                            <h2 id="completed-orders">0</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="background-color: #ffcdd2;">
+                            <i class="fas fa-times-circle" style="color: #f44336;"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Canceled</h3>
+                            <h2 id="canceled-orders">0</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="background-color: #bbdefb;">
+                            <i class="fas fa-clock" style="color: #2196f3;"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Pending</h3>
+                            <h2 id="pending-orders">0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="recent-orders">
+                    <h2>Recent Orders</h2>
+                    <table id="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Products Section -->
+                <div class="products-section" id="products">
+                    <h2>Available Products</h2>
+                    <div class="products-grid" id="products-grid">
+                        <!-- Products will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Ratings Section -->
+                <div class="ratings-section" id="ratings">
+                    <h2>My Ratings</h2>
+                    <div class="ratings-list" id="ratings-list">
+                        <!-- Ratings will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div class="profile-section" id="profile">
+                    <h2>My Profile</h2>
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                            <h3>ESPERANZA</h3>
+                            <p>Customer</p>
+                        </div>
+                        <div class="profile-details">
+                            <div class="detail">
+                                <span>Username:</span>
+                                <span id="profile-username">Karen Zulu</span>
+                            </div>
+                            <div class="detail">
+                                <span>Member Since:</span>
+                                <span id="member-since">April 2025</span>
+                            </div>
+                            <button class="edit-profile-btn">Edit Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Order Details</h2>
+            <div id="order-details">
+                <!-- Order details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Product Details</h2>
+            <div id="product-details">
+                <!-- Product details will be populated by JavaScript -->
+            </div>
+            <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
