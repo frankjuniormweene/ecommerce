@@ -1,0 +1,115 @@
+/* Shop Page Styling */
+.shop {
+    padding: 60px 30px;
+    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+    min-height: 100vh;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.shop .section-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #222;
+    position: relative;
+}
+
+.shop .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #d4af37;
+    margin: 12px auto 0;
+    border-radius: 4px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.product-card .btn {
+    background: #222;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.product-card .btn:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .shop .section-title {
+        font-size: 2.2em;
+    }
+
+    .product-card h3 {
+        font-size: 1.1em;
+    }
+
+    .product-card p {
+        font-size: 1em;
+    }
+}
