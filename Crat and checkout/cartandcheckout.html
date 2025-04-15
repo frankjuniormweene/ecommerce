@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Cart & Checkout</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 12px;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+
+    .cart-item span {
+      flex: 1;
+    }
+
+    .cart-item input {
+      width: 60px;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #thankYou {
+      display: none;
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      font-size: 1.2em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Shopping Cart</h2>
+    <div id="cart"></div>
+    <div class="total" id="total"></div>
+  </div>
+
+  <div class="card">
+    <h3>Checkout Info</h3>
+    <form id="checkoutForm">
+      <label>Name</label>
+      <input type="text" id="name" required />
+
+      <label>Email</label>
+      <input type="email" id="email" required />
+
+      <label>Address</label>
+      <input type="text" id="address" required />
+
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <div id="thankYou">🎉 Thank you for your order!</div>
+
+  <script>
+    const cartItems = [
+      { id: 1, name: "T-shirt", price: 25.00, quantity: 2 },
+      { id: 2, name: "Sneakers", price: 80.00, quantity: 1 }
+    ];
+
+    function renderCart() {
+      const cart = document.getElementById("cart");
+      cart.innerHTML = "";
+      let total = 0;
+
+      cartItems.forEach(item => {
+        total += item.price * item.quantity;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <span>${item.name} (K${item.price.toFixed(2)})</span>
+          <span>
+            Qty: <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${item.id}, this.value)" />
+          </span>
+        `;
+        cart.appendChild(div);
+      });
+
+      document.getElementById("total").innerText = `Total: K${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(id, quantity) {
+      const item = cartItems.find(i => i.id === id);
+      if (item) {
+        item.quantity = Math.max(1, parseInt(quantity));
+        renderCart();
+      }
+    }
+
+    document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const address = document.getElementById("address").value;
+
+      console.log("Order Placed:", { name, email, address, cartItems });
+      document.getElementById("checkoutForm").style.display = "none";
+      document.getElementById("thankYou").style.display = "block";
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
